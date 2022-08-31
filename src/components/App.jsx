@@ -1,16 +1,28 @@
-export const App = () => {
-  return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
-  );
+import React, {Component} from 'react';
+import Searcher from './Searchbar';
+import Gallery from './ImageGallery/ImageGallery';
+
+
+
+class App extends Component {
+  state = {
+    request: '',
+    page: 1,
+  }
+
+  formSubmitHandler = request => {
+    this.setState({request});
+  }
+
+  render() {
+    return (
+      <>
+        <Searcher onSubmit={this.formSubmitHandler}/>
+        <Gallery request={this.state.request}/>
+      </>
+    );
+  }
+  
 };
+
+export default App;
