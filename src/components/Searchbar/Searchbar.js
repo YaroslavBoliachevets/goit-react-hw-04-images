@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Searchbar,
+  Searcher,
   SearchForm,
   SearchFromButton,
   SearchFormButtonLabel,
@@ -9,30 +9,31 @@ import {
 
 import { MdSearch } from 'react-icons/md';
 
-class Searcher extends Component {
+class Searchbar extends Component {
   state = {
-    request: '',
+    query: '',
   };
 
   handleChange = e => {
-    this.setState({request : e.currentTarget.value})
+    this.setState({query : e.currentTarget.value})
   }
 
   onSubmit = e =>{
     e.preventDefault();
-    if (this.state.request.trim() === '') {return}
-    this.props.onSubmit(this.state.request.toLowerCase());
+    if (this.state.query.trim() === '') {return}
+    
+    this.props.onSubmit(this.state.query.toLowerCase());
     this.reset();
   }
 
   reset() {
-    this.setState({request: ''});
+    this.setState({query: ''});
   }
 
   render() {
     return (
       <>
-        <Searchbar>
+        <Searcher>
           <SearchForm onSubmit={this.onSubmit}>
             <SearchFromButton type="submit">
               <MdSearch size={24} />
@@ -44,13 +45,13 @@ class Searcher extends Component {
               autocomplete="off"
               placeholder="Search images and photos"
               onChange={this.handleChange}
-              value={this.state.request}
+              value={this.state.query}
             />
           </SearchForm>
-        </Searchbar>
+        </Searcher>
       </>
     );
   }
 }
 
-export default Searcher;
+export default Searchbar;

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Searchbar = styled.div`
+export const Searcher = styled.div`
   top: 0;
   left: 0;
   position: sticky;
