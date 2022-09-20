@@ -10,12 +10,12 @@ class ImageGallery extends Component {
     return (
       <>
         <Gallery>
-          {this.props.items.map(i => (
+          {this.props.items.map(item => (
             <ImageGalleryItem
-              key={i.id}
-              onClick={() => this.props.onClick(i.id)}
+              key={item.id}
+              onClick={() => this.props.onClick(item)}
             >
-              <ImageGalleryItemImage src={i.webformatURL} alt={i.tags} />
+              <ImageGalleryItemImage src={item.webformatURL} alt={item.tags} />
             </ImageGalleryItem>
           ))}
         </Gallery>
