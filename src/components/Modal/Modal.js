@@ -32,4 +32,7 @@ class Modal extends Component {
   }
 }
 
+// function Modal( options ) {
+// }
+
 export default Modal;

@@ -79,8 +79,6 @@ class App extends Component {
         <Searchbar onSubmit={this.formSubmitHandler} />
 
         <ImageGallery
-          query={query}
-          page={page}
           items={items}
           onClick={this.galleryClick}
         />

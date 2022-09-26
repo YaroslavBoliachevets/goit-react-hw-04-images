@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { useState } from 'react';
 import {
   Searcher,
   SearchForm,
@@ -9,49 +9,44 @@ import {
 
 import { MdSearch } from 'react-icons/md';
 
-class Searchbar extends Component {
-  state = {
-    query: '',
+function Searchbar(options) {
+
+  const [query, setQuery] = useState('');
+
+  const handleChange = event => {
+    setQuery(event.currentTarget.value);
   };
 
-  handleChange = e => {
-    this.setState({query : e.currentTarget.value})
-  }
+  const onSubmit = event => {
+    event.preventDefault();
+    if (query.trim() === '') {
+      return;
+    }
 
-  onSubmit = e =>{
-    e.preventDefault();
-    if (this.state.query.trim() === '') {return}
-    
-    this.props.onSubmit(this.state.query.toLowerCase());
-    this.reset();
-  }
+    options.onSubmit(query.toLowerCase());
+    setQuery('');
+  };
 
-  reset() {
-    this.setState({query: ''});
-  }
+  return (
+    <>
+      <Searcher>
+        <SearchForm onSubmit={onSubmit}>
+          <SearchFromButton type="submit">
+            <MdSearch size={24} />
+            <SearchFormButtonLabel>Search</SearchFormButtonLabel>
+          </SearchFromButton>
 
-  render() {
-    return (
-      <>
-        <Searcher>
-          <SearchForm onSubmit={this.onSubmit}>
-            <SearchFromButton type="submit">
-              <MdSearch size={24} />
-              <SearchFormButtonLabel>Search</SearchFormButtonLabel>
-            </SearchFromButton>
-
-            <SearchFormInput
-              type="text"
-              autocomplete="off"
-              placeholder="Search images and photos"
-              onChange={this.handleChange}
-              value={this.state.query}
-            />
-          </SearchForm>
-        </Searcher>
-      </>
-    );
-  }
+          <SearchFormInput
+            type="text"
+            autocomplete="off"
+            placeholder="Search images and photos"
+            onChange={handleChange}
+            value={query}
+          />
+        </SearchForm>
+      </Searcher>
+    </>
+  );
 }
 
 export default Searchbar;
