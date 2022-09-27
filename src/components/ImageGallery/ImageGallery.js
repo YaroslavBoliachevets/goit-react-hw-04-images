@@ -1,4 +1,3 @@
-
 import {
   Gallery,
   ImageGalleryItem,
@@ -6,6 +5,9 @@ import {
 } from './ImageGallery.module';
 
 function ImageGallery({items, onClick}) {
+
+  // useEffect(()=>{    console.log('items', items);});
+
   return (
     <>
       <Gallery>
